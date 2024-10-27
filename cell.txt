@@ -1,0 +1,7 @@
+=MAP(SEQUENCE(1,E2,0),LAMBDA(x,IFERROR(MAX(FILTER(
+ROW(OFFSET(E11,0,x,5))-ROW(E11)+1,OFFSET(E11,0,x,5)<>"")),"")))
+
+=VSTACK(LET(colCode,CODE("E"),MAP(SEQUENCE(1,COUNT(E16:16),colCode),LAMBDA(cCode,
+MAP(SEQUENCE(PRODUCT(E16:16),1,0),LAMBDA(x,
+LET(fmt,OFFSET(E4,0,cCode-colCode),cVal,OFFSET(E11,MOD(QUOTIENT(x,MAX(PRODUCT(INDIRECT(CHAR(cCode+1)&ROW(E16)&":"&ROW(E16))),1)),INDIRECT(CHAR(cCode)&ROW(E16))),cCode-colCode),
+IF(fmt="",cVal,TEXT(cVal,fmt)))))))),{"test1","test2","test3"})
